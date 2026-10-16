@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0E2D52;
+  --color-primary-deep: #0B2038;
+  --color-secondary: #00B4D8;
+  --color-mid: #2C67B9;
+  --color-surface: #F8FAFC;
+  --color-ink: #0A1A2F;
+  --color-whatsapp: #25D366;
+  --font-display: "Jost", sans-serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Animations using pure CSS for Hero */
+@keyframes drawOuterVertex {
+  0% {
+    stroke-dashoffset: 1200;
+    opacity: 0.2;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes drawInnerVertex {
+  0% {
+    stroke-dashoffset: 800;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes wordReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInHero {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.anim-draw-outer {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: drawOuterVertex 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.anim-draw-inner {
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: drawInnerVertex 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.anim-word {
+  display: inline-block;
+  opacity: 0;
+  animation: wordReveal 0.5s ease-out forwards;
+}
+
+.anim-fade-hero {
+  opacity: 0;
+  animation: fadeInHero 0.4s ease-out 0.9s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-draw-outer,
+  .anim-draw-inner {
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .anim-word,
+  .anim-fade-hero {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
